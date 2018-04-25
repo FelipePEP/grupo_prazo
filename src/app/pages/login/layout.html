@@ -1,0 +1,23 @@
+<div class="container ">
+  <app-header></app-header>
+  <div class="container border w-50 p-5 bg-white">
+
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control form-control-lg" placeholder="Digite seu email" name='email' [(ngModel)]='email'
+          required>
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" class="form-control form-control-lg" placeholder="Digite sua senha" name='password' [(ngModel)]='password'
+          required>
+      </div>
+      <div class="row">
+        <button type="submit" class="btn btn-primary btn-lg mt-5 col-8 offset-2">ENTRAR</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+<router-outlet></router-outlet>

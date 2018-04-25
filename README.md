@@ -1,27 +1,33 @@
 # TaskManager
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+Projeto desenvolvido por Felipe Leandro de Oliveira para processo seletivo do Grupo Prazo.
+Criado com Twitter bootstrap e Angular 5 [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
-## Development server
+## Levantando aplicação
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+É preciso instalar o nodejs e Angular para rodar o projeto. 
+Digite o comando `ng serve` no terminal de controle e acesse `http://localhost:4200/` para testar a aplicação.
 
-## Code scaffolding
+## Testando aplicação
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Existe um usuário base com login 'admin@admin.com' e senha 'admin'. 
+Outros usuários podem ser criados e deletados a vontade.
 
-## Build
+## Banco de dados
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Conforme o solicitado, utilizei o local storage do cliente para armazenar dados.
+Infelizmente não tive tempo hábil para montar uma API node com Mongo, o que seria o mais indicado.
 
-## Running unit tests
+## Decisões de arquitetura
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Não tinha trabalhado com as versões mais atuais de bootstrap e Angular antes, por isso não tenho certeza sobre uma arquitetura ideal.
+Optei por estruturar o projeto em componentes, módulos, paginas e serviços, embora pudesse expandir mais para a camada de domínio do negócio.
 
-## Running end-to-end tests
+Quanto à interface de usuário optei por usar o template básico do bootstrap.  Inseri cores no em títulos e background para utilizar variáveis no css e causar contraste visual. Utilizei uma folha de estilo única para toda a aplicação, pois não houve necessidades exclusivas dos componentes ou páginas. Utilizei uma folha de estilo única para toda a aplicação, pois não houve necessidades exclusivas dos componentes ou páginas.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Contato
 
-## Further help
+blizz.pep@gmail.com
+foliveira.webdev@gmail.com
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+

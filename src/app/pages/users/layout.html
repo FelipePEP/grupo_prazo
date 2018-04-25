@@ -1,0 +1,97 @@
+<app-header-content></app-header-content>
+<div class="container border w-50 p-5 mt-5 bg-white">
+
+  <h2 class='title titlePage float-left'>
+    {{ title }}
+  </h2>
+
+  <button class="float-right btn btn-outline-primary mb-3" data-toggle="modal" data-target="#userModal" (click)="createUser()">Criar Usuário</button>
+
+  <table class="table table-responsive-sm">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#ID</th>
+        <th scope="col" class='w-30'>Nome</th>
+        <th scope="col" class='w-60'>Email</th>
+        <th scope="col" class='w-10' colspan="2">Adminstrador</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let user of userList'>
+        <th scope="row" data-toggle="modal" data-target="#userModal" (click)="selectUser(user.id)">{{user.id}}</th>
+        <td data-toggle="modal" data-target="#userModal" (click)="selectUser(user.id)">{{user.name}}</td>
+        <td data-toggle="modal" data-target="#userModal" (click)="selectUser(user.id)" [innerHtml]='user.email'></td>
+        <td>
+          <input type="checkbox" class="" name="isAdmin" checked={{user.isAdmin}} (click)="updateRole(user.id)" />
+        </td>
+        <td>
+          <button data-toggle="modal" data-target="#userDelete" class="btn float-right btn-outline-danger mb-3" (click)="selectUser(user.id)">
+            Excluir </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- MODAL DE CADASTRO -->
+
+  <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title title" id="userModalLabel">Usuário</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #f="ngForm" (ngSubmit)="saveUser()" ngNativeValidate>
+            <div class="form-group">
+              <label for="name" class="col-form-label">Nome:</label>
+              <input type='text' name='name' rows="4" class="form-control" [(ngModel)]="userSelected.name" required/>
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-form-label">Email:</label>
+              <input type='email' name='email' rows="4" class="form-control" [(ngModel)]="userSelected.email" required/>
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-form-label">Senha:</label>
+              <input type='password' name='password' rows="4" class="form-control" [(ngModel)]="userSelected.password" required/>
+            </div>
+            <div class="form-group">
+              <label for="isAdmin" class="col-form-label">Usuários é administrador: </label>
+              <input type="checkbox" name="isAdmin" [(ngModel)]="userSelected.isAdmin" />
+            </div>
+            <div class="row modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">SALVAR</button>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE EXCLUSÃO -->
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="userDelete">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title title">Exlcusão de usuário</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Você realmente deseja excluir este usuário?
+            <br> Esta operação é permanente.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="unselectUser()">Cancelar</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteUser()">Excluir!</button>
+        </div>
+      </div>
+    </div>
+  </div>

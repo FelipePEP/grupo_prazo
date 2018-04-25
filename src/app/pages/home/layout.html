@@ -1,0 +1,87 @@
+<app-header-content></app-header-content>
+<div class="container border w-50 p-5 mt-5 bg-white">
+
+  <h2 class='title titlePage float-left'>
+    {{ title }}
+  </h2>
+
+  <button class="float-right btn btn-outline-primary mb-3" data-toggle="modal" data-target="#taskModal" (click)="createTask()">Criar Tarefa</button>
+
+
+  <table class="table table-responsive-sm">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col" class='w-10'>#cod</th>
+        <th scope="col" class='w-70'>Descrição</th>
+        <th scope="col" class='w-20' colspan="2">Finalizada</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let task of taskList'>
+        <th scope="row">{{task.cod}}</th>
+        <td class={{task.status}} data-toggle="modal" data-target="#taskModal" (click)="selectTask(task.cod)" [innerHtml]='task.desc'></td>
+        <td>
+          <input type="checkbox" name="status" checked={{task.status}} (click)="updateStatus(task.cod)" (change)="done" />
+        </td>
+        <td>
+          <button class="btn float-right btn-outline-danger mb-3" (click)="selectTask(task.cod)" data-toggle="modal" data-target="#taskDelete">
+          Excluir </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MODAL DE CADASTRO -->
+
+<div class="modal fade" id="taskModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title title" id="taskModalLabel">Tarefa {{taskSelected.cod}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #f="ngForm" (ngSubmit)="saveTask()" ngNativeValidate>
+          <div class="form-group">
+            <label for="description" class="col-form-label">Descrição:</label>
+            <textarea minlength="10" name='task' rows="4" class="form-control" id="description" placeholder='Digite sua tarefa' [(ngModel)]="taskSelected.desc"
+              required></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">SALVAR</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE EXCLUSÃO -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="taskDelete">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title title">Exlcusão de tarefa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Você realmente deseja excluir esta tarefa?
+          <br> Esta operação é permanente.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="unselectTask()">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteTask()">Excluir!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
