@@ -1,6 +1,6 @@
 # TaskManager
 
-Projeto desenvolvido por Felipe Leandro de Oliveira para processo seletivo do Grupo Prazo.
+Projeto desenvolvido para processo seletivo do Grupo Prazo.
 Criado com Twitter bootstrap e Angular 5 [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
 ## Levantando aplicação
